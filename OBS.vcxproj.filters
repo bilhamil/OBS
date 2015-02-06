@@ -163,6 +163,21 @@
     <ClCompile Include="Source\Service.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Source\PeerConnection.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\main_wnd.cc">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\peer_connection_client.cc">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\conductor.cc">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\defaults.cc">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\D3D10System.h">
@@ -210,9 +225,27 @@
     <ClInclude Include="Source\LogUploader.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClCompile Include="Source\DataPacketHelpers.h">
+    <ClInclude Include="Source\DataPacketHelpers.h">
       <Filter>Headers</Filter>
-    </ClCompile>
+    </ClInclude>
+    <ClInclude Include="Source\PeerConnection.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\conductor.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\defaults.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\flagdefs.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\main_wnd.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\peer_connection_client.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="cursor1.cur">

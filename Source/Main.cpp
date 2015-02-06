@@ -18,6 +18,7 @@
 
 
 #include "Main.h"
+#include "PeerConnection.h"
 
 #include <shellapi.h>
 #include <shlobj.h>
@@ -452,6 +453,8 @@ void SetWorkingFolder(void)
     }
 }
 
+bool allocatorInitialized = InitXT(NULL, TEXT("FastAlloc"));
+
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
 {
     if (!HasSSE2Support())
@@ -464,6 +467,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     //workaround AVX2 bug in VS2013, http://connect.microsoft.com/VisualStudio/feedback/details/811093
     _set_FMA3_enable(0);
 #endif
+
+    LogRaw(L"\r\n\r\nInitialized Allocator: %d", allocatorInitialized);
 
     LoadSeDebugPrivilege();
 
@@ -682,12 +687,17 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         OSFileChangeData *pGCHLogMF = NULL;
         pGCHLogMF = OSMonitorFileStart (strCaptureHookLog, true);
 
+		// Here we startup peer connection stuff
+		CreateThread(NULL, 0, peer_connection_thread_func, NULL, 0, 0);
+
+		// Go into OBS Message Loop
+
         App = new OBS;
 
         HACCEL hAccel = LoadAccelerators(hinstMain, MAKEINTRESOURCE(IDR_ACCELERATOR1));
 
         MSG msg;
-        while(GetMessage(&msg, NULL, 0, 0))
+		while (GetMessage(&msg, hwndMain, 0, 0))
         {
             if(!TranslateAccelerator(hwndMain, hAccel, &msg) && !IsDialogMessage(hwndMain, &msg))
             {

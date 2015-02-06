@@ -83,7 +83,6 @@ inline void Free(void *lpData)   {MainAllocator->_Free(lpData);}
 
 #endif
 
-
 inline void* operator new(size_t dwSize)
 {
     void* val = Allocate(dwSize);
